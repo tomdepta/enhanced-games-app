@@ -10,4 +10,8 @@
     <PackageReference Include="fluentscheduler" Version="5.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EnhancedGamesApp.DAL\EnhancedGamesApp.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
