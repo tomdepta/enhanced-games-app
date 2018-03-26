@@ -63,5 +63,42 @@ namespace EnhancedGamesApp.Tests.ConsoleAppTests.UpdateGamesListJobTest
             // then
             Automock.Mock<IGameRepository>().Verify(x => x.AddGames(It.Is<IEnumerable<Game>>(z => z.All(y => y.Equals(newGame)))));
         }
+
+        [Fact]
+        public void ShouldUpdateExistingGames_WhenEnhancementParametersChanged()
+        {
+            // given
+            var mockJob = Automock.Create<UpdateGamesListJob>();
+            var changedGames = new List<Game>
+            {
+                new Game {Title = "test2", FourKConfirmed = true},
+                new Game {Title = "test3", HdrRenderingAvailable = true},
+                new Game {Title = "test4", Status = AvailabilityStatus.AvailableNow},
+            };
+
+            var cachedGames = new List<Game>
+            {
+                new Game {Title = "test1" },
+                new Game {Title = "test2", FourKConfirmed = false},
+                new Game {Title = "test3", HdrRenderingAvailable = false},
+                new Game {Title = "test4", Status = AvailabilityStatus.ComingSoon},
+            };
+            var gamesFromProvider = new List<Game>
+            {
+                new Game {Title = "test1"},
+                new Game {Title = "test2", FourKConfirmed = true},
+                new Game {Title = "test3", HdrRenderingAvailable = true},
+                new Game {Title = "test4", Status = AvailabilityStatus.AvailableNow},
+            };
+
+            Automock.Mock<IGameRepository>().Setup(x => x.GetGames()).Returns(cachedGames);
+            Automock.Mock<IGamesListProvider>().Setup(x => x.GetGamesList()).Returns(gamesFromProvider);
+
+            // when
+            mockJob.Execute();
+
+            // then
+            Automock.Mock<IGameRepository>().Verify(x => x.UpdateGames(It.Is<IEnumerable<Game>>(z => z.SequenceEqual(changedGames))));
+        }
     }
 }

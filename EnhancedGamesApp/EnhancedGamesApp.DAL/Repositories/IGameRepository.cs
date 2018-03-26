@@ -8,5 +8,7 @@ namespace EnhancedGamesApp.DAL.Repositories
         IEnumerable<Game> GetGames();
 
         void AddGames(IEnumerable<Game> gamesToAdd);
+
+        void UpdateGames(IEnumerable<Game> gamesToUpdate);
     }
 }

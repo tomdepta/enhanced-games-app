@@ -14,5 +14,10 @@ namespace EnhancedGamesApp.DAL.Repositories
         {
             throw new System.NotImplementedException();
         }
+
+        public void UpdateGames(IEnumerable<Game> gamesToUpdate)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
