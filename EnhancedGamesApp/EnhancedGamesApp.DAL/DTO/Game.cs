@@ -10,7 +10,7 @@
 
         public bool HdrRenderingAvailable { get; set; }
 
-        public bool AvailableNow { get; set; }
+        public AvailabilityStatus Status { get; set; }
 
         public override bool Equals(object obj)
         {
