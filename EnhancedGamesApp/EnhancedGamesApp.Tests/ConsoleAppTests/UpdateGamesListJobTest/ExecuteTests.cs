@@ -42,15 +42,15 @@ namespace EnhancedGamesApp.Tests.ConsoleAppTests.UpdateGamesListJobTest
         {
             // given
             var mockJob = Automock.Create<UpdateGamesListJob>();
-            var newGame = new Game {Title = "test2"};
+            var newGame = new Game {Key = "test2"};
 
             var cachedGames = new List<Game>
             {
-                new Game {Title = "test1"}
+                new Game {Key = "test1"}
             };
             var gamesFromProvider = new List<Game>
             {
-                new Game {Title = "test1"},
+                new Game {Key = "test1"},
                 newGame
             };
 

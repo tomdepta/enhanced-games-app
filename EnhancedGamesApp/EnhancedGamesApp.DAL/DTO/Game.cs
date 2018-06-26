@@ -2,6 +2,8 @@
 {
     public class Game
     {
+        public string Key { get; set; }
+
         public string Title { get; set; }
 
         public string Publisher { get; set; }
@@ -14,30 +16,18 @@
 
         public override bool Equals(object obj)
         {
-            if (obj is null)
-            {
-                return false;
-            }
+            return obj is Game game &&
+                   Key == game.Key;
+        }
 
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            return obj.GetType() == GetType() && Equals((Game)obj);
+        protected bool Equals(Game other)
+        {
+            return string.Equals(Key, other.Key);
         }
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return ((Title != null ? Title.GetHashCode() : 0) * 397) ^ (Publisher != null ? Publisher.GetHashCode() : 0);
-            }
-        }
-
-        private bool Equals(Game other)
-        {
-            return string.Equals(Title, other.Title) && string.Equals(Publisher, other.Publisher);
+            return Key != null ? Key.GetHashCode() : 0;
         }
     }
 }
