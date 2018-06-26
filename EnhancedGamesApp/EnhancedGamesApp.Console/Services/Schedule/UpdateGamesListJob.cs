@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using EnhancedGamesApp.DAL.DTO;
+using EnhancedGamesApp.DAL.Entities;
 using EnhancedGamesApp.DAL.Repositories;
 using FluentScheduler;
 

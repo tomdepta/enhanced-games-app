@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EnhancedGamesApp.DAL.DTO;
+using EnhancedGamesApp.DAL.Entities;
 
 namespace EnhancedGamesApp.Console.Services
 {

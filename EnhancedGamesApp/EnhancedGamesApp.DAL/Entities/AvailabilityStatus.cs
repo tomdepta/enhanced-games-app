@@ -1,4 +1,4 @@
-﻿namespace EnhancedGamesApp.DAL.DTO
+﻿namespace EnhancedGamesApp.DAL.Entities
 {
     public enum AvailabilityStatus
     {

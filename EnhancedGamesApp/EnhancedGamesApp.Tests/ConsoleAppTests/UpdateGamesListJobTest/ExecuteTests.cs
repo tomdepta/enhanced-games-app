@@ -2,7 +2,7 @@
 using System.Linq;
 using EnhancedGamesApp.Console.Services;
 using EnhancedGamesApp.Console.Services.Schedule;
-using EnhancedGamesApp.DAL.DTO;
+using EnhancedGamesApp.DAL.Entities;
 using EnhancedGamesApp.DAL.Repositories;
 using Moq;
 using Xunit;
