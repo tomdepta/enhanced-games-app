@@ -30,13 +30,18 @@ namespace EnhancedGamesApp.Console.Services
             return keys.Select(key => new Game
                 {
                     Key = key,
-                    Title = json[RootPropertyName][GameTitle][key].ToString(),
+                    Title = TrimTitle(json[RootPropertyName][GameTitle][key].ToString()),
                     Publisher = json[RootPropertyName][Publisher][key].ToString(),
                     FourKConfirmed = IsFourK(json[RootPropertyName][FourK][key].ToString()),
                     HdrRenderingAvailable = IsHdr(json[RootPropertyName][Hdr][key].ToString()),
                     Status = GetAvailabilityStatus(json[RootPropertyName][Availability][key].ToString())
                 })
                 .ToList();
+        }
+
+        private static string TrimTitle(string title)
+        {
+            return title.Contains('<') ? title.Substring(0, title.IndexOf('<')) : title;
         }
 
         private static string TrimResponseContent(string content)
