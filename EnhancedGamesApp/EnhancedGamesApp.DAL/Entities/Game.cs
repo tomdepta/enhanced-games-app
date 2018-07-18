@@ -1,11 +1,17 @@
-﻿namespace EnhancedGamesApp.DAL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EnhancedGamesApp.DAL.Entities
 {
     public class Game
     {
+        [Key]
+        [Required]
         public string Key { get; set; }
 
+        [Required]
         public string Title { get; set; }
 
+        [Required]
         public string Publisher { get; set; }
 
         public bool FourKConfirmed { get; set; }

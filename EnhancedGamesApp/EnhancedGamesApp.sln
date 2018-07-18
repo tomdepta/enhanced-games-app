@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnhancedGamesApp.Console", "EnhancedGamesApp.Console\EnhancedGamesApp.Console.csproj", "{B7B83BF1-2320-4D9A-938E-5C9FC7668204}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedGamesApp.DAL", "EnhancedGamesApp.DAL\EnhancedGamesApp.DAL.csproj", "{1177F3D3-8CAA-470F-87EC-673D6D7A9EEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnhancedGamesApp.DAL", "EnhancedGamesApp.DAL\EnhancedGamesApp.DAL.csproj", "{1177F3D3-8CAA-470F-87EC-673D6D7A9EEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedGamesApp.Tests", "EnhancedGamesApp.Tests\EnhancedGamesApp.Tests.csproj", "{77860C11-7C64-469F-A9A3-3E87753FB217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnhancedGamesApp.Tests", "EnhancedGamesApp.Tests\EnhancedGamesApp.Tests.csproj", "{77860C11-7C64-469F-A9A3-3E87753FB217}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedGamesApp.Web", "EnhancedGamesApp.Web\EnhancedGamesApp.Web.csproj", "{28BA3E55-CFE8-49D9-874F-740445B46FBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{77860C11-7C64-469F-A9A3-3E87753FB217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77860C11-7C64-469F-A9A3-3E87753FB217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77860C11-7C64-469F-A9A3-3E87753FB217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BA3E55-CFE8-49D9-874F-740445B46FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BA3E55-CFE8-49D9-874F-740445B46FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BA3E55-CFE8-49D9-874F-740445B46FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BA3E55-CFE8-49D9-874F-740445B46FBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
