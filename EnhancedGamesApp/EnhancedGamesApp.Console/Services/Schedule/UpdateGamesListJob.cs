@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using EnhancedGamesApp.DAL.Entities;
 using EnhancedGamesApp.DAL.Repositories;
 using FluentScheduler;
@@ -16,16 +17,32 @@ namespace EnhancedGamesApp.Console.Services.Schedule
             _listProvider = listProvider;
         }
 
-        public void Execute()
+        public async void Execute()
         {
             var gamesFromProvider = _listProvider.GetGamesList().ToList();
-            var cachedGames = _gameRepository.GetGames();
+            var cachedGames = await _gameRepository.GetGamesAsync();
 
             var newGames = gamesFromProvider.Where(x => cachedGames.All(y => !y.Equals(x))).ToList();
-            _gameRepository.AddGames(newGames);
-            
-            var gamesToUpdate = gamesFromProvider.Where(x => x.RequiresUpdate(cachedGames.FirstOrDefault(y => y.Equals(x))));
-            _gameRepository.UpdateGames(gamesToUpdate);
+            if (newGames.Any())
+            {
+                await _gameRepository.AddGamesAsync(newGames);
+            }
+
+            var gamesToUpdate = cachedGames
+                .Where(x => x.RequiresUpdate(gamesFromProvider.FirstOrDefault(y => y.Equals(x)))).ToList();
+
+            if (gamesToUpdate.Any())
+            {
+                gamesToUpdate.ForEach(game =>
+                {
+                    var newVersion = gamesFromProvider.First(g => g.Equals(game));
+                    game.FourKConfirmed = newVersion.FourKConfirmed;
+                    game.HdrRenderingAvailable = newVersion.HdrRenderingAvailable;
+                    game.Status = newVersion.Status;
+                });
+
+                await _gameRepository.UpdateGamesAsync(gamesToUpdate);
+            }
         }
     }
 }

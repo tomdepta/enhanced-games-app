@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using EnhancedGamesApp.DAL.Entities;
 
 namespace EnhancedGamesApp.DAL.Repositories
 {
     public interface IGameRepository
     {
-        IEnumerable<Game> GetGames();
+        Task<IEnumerable<Game>> GetGamesAsync();
 
-        void AddGames(IEnumerable<Game> gamesToAdd);
+        Task AddGamesAsync(IEnumerable<Game> gamesToAdd);
 
-        void UpdateGames(IEnumerable<Game> gamesToUpdate);
+        Task UpdateGamesAsync(IEnumerable<Game> gamesToUpdate);
+
+        Task EnsureSaved();
     }
 }

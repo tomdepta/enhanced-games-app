@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EnhancedGamesApp.Console.Services;
 using EnhancedGamesApp.Console.Services.Schedule;
 using EnhancedGamesApp.DAL.Entities;
@@ -34,7 +35,7 @@ namespace EnhancedGamesApp.Tests.ConsoleAppTests.UpdateGamesListJobTest
             mockJob.Execute();
 
             // then
-            Automock.Mock<IGameRepository>().Verify(x => x.GetGames());
+            Automock.Mock<IGameRepository>().Verify(x => x.GetGamesAsync());
         }
 
         [Fact]
@@ -54,14 +55,14 @@ namespace EnhancedGamesApp.Tests.ConsoleAppTests.UpdateGamesListJobTest
                 newGame
             };
 
-            Automock.Mock<IGameRepository>().Setup(x => x.GetGames()).Returns(cachedGames);
+            Automock.Mock<IGameRepository>().Setup(x => x.GetGamesAsync()).Returns(Task.FromResult(cachedGames.AsEnumerable()));
             Automock.Mock<IGamesListProvider>().Setup(x => x.GetGamesList()).Returns(gamesFromProvider);
 
             // when
             mockJob.Execute();
 
             // then
-            Automock.Mock<IGameRepository>().Verify(x => x.AddGames(It.Is<IEnumerable<Game>>(z => z.All(y => y.Equals(newGame)))));
+            Automock.Mock<IGameRepository>().Verify(x => x.AddGamesAsync(It.Is<IEnumerable<Game>>(z => z.All(y => y.Equals(newGame)))));
         }
 
         [Fact]
@@ -71,34 +72,35 @@ namespace EnhancedGamesApp.Tests.ConsoleAppTests.UpdateGamesListJobTest
             var mockJob = Automock.Create<UpdateGamesListJob>();
             var changedGames = new List<Game>
             {
-                new Game {Title = "test2", FourKConfirmed = true},
-                new Game {Title = "test3", HdrRenderingAvailable = true},
-                new Game {Title = "test4", Status = AvailabilityStatus.AvailableNow},
+                new Game {Key = "test2", FourKConfirmed = true},
+                new Game {Key = "test3", HdrRenderingAvailable = true},
+                new Game {Key = "test4", Status = AvailabilityStatus.AvailableNow},
             };
 
             var cachedGames = new List<Game>
             {
-                new Game {Title = "test1" },
-                new Game {Title = "test2", FourKConfirmed = false},
-                new Game {Title = "test3", HdrRenderingAvailable = false},
-                new Game {Title = "test4", Status = AvailabilityStatus.ComingSoon},
+                new Game {Key = "test1" },
+                new Game {Key = "test2", FourKConfirmed = false},
+                new Game {Key = "test3", HdrRenderingAvailable = false},
+                new Game {Key = "test4", Status = AvailabilityStatus.ComingSoon},
             };
             var gamesFromProvider = new List<Game>
             {
-                new Game {Title = "test1"},
-                new Game {Title = "test2", FourKConfirmed = true},
-                new Game {Title = "test3", HdrRenderingAvailable = true},
-                new Game {Title = "test4", Status = AvailabilityStatus.AvailableNow},
+                new Game {Key = "test1"},
+                new Game {Key = "test2", FourKConfirmed = true},
+                new Game {Key = "test3", HdrRenderingAvailable = true},
+                new Game {Key = "test4", Status = AvailabilityStatus.AvailableNow},
             };
 
-            Automock.Mock<IGameRepository>().Setup(x => x.GetGames()).Returns(cachedGames);
+            Automock.Mock<IGameRepository>().Setup(x => x.GetGamesAsync()).Returns(Task.FromResult(cachedGames.AsEnumerable()));
             Automock.Mock<IGamesListProvider>().Setup(x => x.GetGamesList()).Returns(gamesFromProvider);
 
             // when
             mockJob.Execute();
 
             // then
-            Automock.Mock<IGameRepository>().Verify(x => x.UpdateGames(It.Is<IEnumerable<Game>>(z => z.SequenceEqual(changedGames))));
+            Automock.Mock<IGameRepository>().Verify(x => x.UpdateGamesAsync(It.Is<IEnumerable<Game>>(z => z.SequenceEqual(changedGames))));
+            //Automock.Mock<IGameRepository>().Verify(x => x.AddGamesAsync(It.Is<IEnumerable<Game>>(z => z.All(y => y.Equals(newGame)))));
         }
     }
 }

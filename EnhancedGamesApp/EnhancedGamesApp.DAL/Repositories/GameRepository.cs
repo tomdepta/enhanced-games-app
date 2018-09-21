@@ -1,23 +1,40 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using EnhancedGamesApp.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EnhancedGamesApp.DAL.Repositories
 {
     public class GameRepository : IGameRepository
     {
-        public IEnumerable<Game> GetGames()
+        private EnhancedGamesAppDbContext _context;
+
+        public GameRepository(EnhancedGamesAppDbContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
         }
 
-        public void AddGames(IEnumerable<Game> gamesToAdd)
+        public async Task<IEnumerable<Game>> GetGamesAsync()
         {
-            throw new System.NotImplementedException();
+            return await _context.Games.ToListAsync();
         }
 
-        public void UpdateGames(IEnumerable<Game> gamesToUpdate)
+        public async Task AddGamesAsync(IEnumerable<Game> gamesToAdd)
         {
-            throw new System.NotImplementedException();
+            await _context.Games.AddRangeAsync(gamesToAdd);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateGamesAsync(IEnumerable<Game> gamesToUpdate)
+        {
+                _context.UpdateRange(gamesToUpdate);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EnsureSaved()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

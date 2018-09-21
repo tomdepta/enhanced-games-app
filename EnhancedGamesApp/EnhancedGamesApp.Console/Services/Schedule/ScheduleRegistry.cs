@@ -8,7 +8,7 @@ namespace EnhancedGamesApp.Console.Services.Schedule
     {
         public ScheduleRegistry(IEnumerable<IJob> jobs)
         {
-            jobs.ToList().ForEach(x => Schedule(x).ToRunEvery(10).Seconds());
+            jobs.ToList().ForEach(x => Schedule(x).ToRunNow().AndEvery(600).Seconds());
         }
     }
 }
