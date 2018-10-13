@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using EnhancedGamesApp.Console.Extensions;
 using EnhancedGamesApp.DAL.Entities;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
@@ -8,8 +10,6 @@ namespace EnhancedGamesApp.Console.Services
 {
     public class WebGamesListProvider : IGamesListProvider
     {
-        private const string ListJsonUrl = "https://www.xbox.com/en-US/games/xbox-one/js/enl-tableContent.json";
-
         private const string RootPropertyName = "headings";
 
         private const string GameTitle = "Game Title";
@@ -21,9 +21,18 @@ namespace EnhancedGamesApp.Console.Services
         private const string KeySuffix = "urlhttp";
         private const char HtmlOpeningTag = '<';
 
+        private readonly IConfiguration _configuration;
+        private readonly string _listJsonUrl;
+
+        public WebGamesListProvider(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _listJsonUrl = _configuration["GameListUrl"];
+        }
+
         public IEnumerable<Game> GetGamesList()
         {
-            var client = new RestClient(ListJsonUrl);
+            var client = new RestClient(_listJsonUrl);
             var response = client.Execute(new RestRequest(Method.GET));
 
             var trimmedContent = TrimResponseContent(response.Content);
@@ -33,7 +42,7 @@ namespace EnhancedGamesApp.Console.Services
                 .Properties()
                 .Select(p => p.Name);
 
-            return keys.Select(key => new Game
+            var gameList = keys.Select(key => new Game
                 {
                     Key = TrimKey(key),
                     Title = TrimTitle(json[RootPropertyName][GameTitle][key].ToString()),
@@ -43,6 +52,10 @@ namespace EnhancedGamesApp.Console.Services
                     Status = GetAvailabilityStatus(json[RootPropertyName][Availability][key].ToString())
                 })
                 .ToList();
+
+            gameList.ForEach(g => g.Key = $"{g.Key}{g.Publisher}".RemoveSpecialCharacters().ToLower());
+
+            return gameList;
         }
 
         private static string TrimTitle(string title)
