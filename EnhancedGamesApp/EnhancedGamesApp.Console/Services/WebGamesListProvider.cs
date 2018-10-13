@@ -11,11 +11,15 @@ namespace EnhancedGamesApp.Console.Services
         private const string ListJsonUrl = "https://www.xbox.com/en-US/games/xbox-one/js/enl-tableContent.json";
 
         private const string RootPropertyName = "headings";
+
         private const string GameTitle = "Game Title";
         private const string Publisher = "Publisher";
         private const string FourK = "4K";
         private const string Hdr = "HDR";
         private const string Availability = "Availability";
+
+        private const string KeySuffix = "urlhttp";
+        private const char HtmlOpeningTag = '<';
 
         public IEnumerable<Game> GetGamesList()
         {
@@ -25,11 +29,13 @@ namespace EnhancedGamesApp.Console.Services
             var trimmedContent = TrimResponseContent(response.Content);
             var json = JObject.Parse(trimmedContent);
             
-            var keys = JObject.Parse(json[RootPropertyName][GameTitle].ToString()).Properties().Select(p => p.Name);
+            var keys = JObject.Parse(json[RootPropertyName][GameTitle].ToString())
+                .Properties()
+                .Select(p => p.Name);
 
             return keys.Select(key => new Game
                 {
-                    Key = key,
+                    Key = TrimKey(key),
                     Title = TrimTitle(json[RootPropertyName][GameTitle][key].ToString()),
                     Publisher = json[RootPropertyName][Publisher][key].ToString(),
                     FourKConfirmed = IsFourK(json[RootPropertyName][FourK][key].ToString()),
@@ -41,7 +47,12 @@ namespace EnhancedGamesApp.Console.Services
 
         private static string TrimTitle(string title)
         {
-            return title.Contains('<') ? title.Substring(0, title.IndexOf('<')) : title;
+            return title.Contains(HtmlOpeningTag) ? title.Substring(0, title.IndexOf(HtmlOpeningTag)) : title;
+        }
+
+        private static string TrimKey(string key)
+        {
+            return key.Contains(KeySuffix) ? key.Substring(0, key.IndexOf(KeySuffix)) : key;
         }
 
         private static string TrimResponseContent(string content)
