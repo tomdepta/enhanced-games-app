@@ -1,9 +1,10 @@
 ﻿using System.IO;
 using Autofac;
-using EnhancedGamesApp.Console.Services;
-using EnhancedGamesApp.Console.Services.Schedule;
+using EnhancedGamesApp.Console.Schedule;
+using EnhancedGamesApp.Console.Shared.Jobs;
 using EnhancedGamesApp.DAL;
 using EnhancedGamesApp.DAL.Repositories;
+using EnhancedGamesApp.Shared.Services.Providers;
 using FluentScheduler;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using FluentScheduler;
+using System.Collections.Generic;
 using System.Linq;
-using FluentScheduler;
 
-namespace EnhancedGamesApp.Console.Services.Schedule
+namespace EnhancedGamesApp.Console.Schedule
 {
     internal class ScheduleRegistry : Registry
     {

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using EnhancedGamesApp.DAL.Entities;
+﻿using EnhancedGamesApp.DAL.Entities;
+using System.Collections.Generic;
 
-namespace EnhancedGamesApp.Console.Services
+namespace EnhancedGamesApp.Shared.Services.Providers
 {
     internal class FakeGamesListProvider : IGamesListProvider
     {

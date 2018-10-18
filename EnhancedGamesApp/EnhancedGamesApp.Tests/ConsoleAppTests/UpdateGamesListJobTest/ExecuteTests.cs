@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EnhancedGamesApp.Console.Services;
-using EnhancedGamesApp.Console.Services.Schedule;
+using EnhancedGamesApp.Console.Shared.Jobs;
 using EnhancedGamesApp.DAL.Entities;
 using EnhancedGamesApp.DAL.Repositories;
+using EnhancedGamesApp.Shared.Services.Providers;
 using Moq;
 using Xunit;
 

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using EnhancedGamesApp.Console.Extensions;
-using EnhancedGamesApp.DAL.Entities;
+﻿using EnhancedGamesApp.DAL.Entities;
+using EnhancedGamesApp.Shared.Extensions;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace EnhancedGamesApp.Console.Services
+namespace EnhancedGamesApp.Shared.Services.Providers
 {
     public class WebGamesListProvider : IGamesListProvider
     {
