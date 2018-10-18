@@ -8,6 +8,7 @@ using EnhancedGamesApp.Shared.Services.Providers;
 using FluentScheduler;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace EnhancedGamesApp.Console.Configuration
 {
@@ -20,6 +21,8 @@ namespace EnhancedGamesApp.Console.Configuration
             builder.RegisterType<WebGamesListProvider>().As<IGamesListProvider>();
             builder.RegisterType<UpdateGamesListJob>().As<IJob>();
             builder.RegisterType<ScheduleRegistry>().As<Registry>();
+            
+            builder.RegisterInstance(new ConsoleLogger()).As<ILogger>();
 
             RegisterDbContext(builder, configuration["EnhancedGamesAppConnectionString"]);
         }
