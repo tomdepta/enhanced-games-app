@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnhancedGamesApp.Tests", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnhancedGamesApp.Web", "EnhancedGamesApp.Web\EnhancedGamesApp.Web.csproj", "{28BA3E55-CFE8-49D9-874F-740445B46FBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedGamesApp.Shared", "EnhancedGamesApp.Shared\EnhancedGamesApp.Shared.csproj", "{A0D7DF20-5FDC-43CD-86FF-5B966A6D7A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnhancedGamesApp.Shared", "EnhancedGamesApp.Shared\EnhancedGamesApp.Shared.csproj", "{A0D7DF20-5FDC-43CD-86FF-5B966A6D7A58}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{D04C14E7-4A60-452A-80BC-67546E499967}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedGamesApp.UpdateListFunction", "EnhancedGamesApp.UpdateListFunction\EnhancedGamesApp.UpdateListFunction.csproj", "{62AC210B-90D5-4603-B47B-41B103AE2755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnhancedGamesApp.UpdateListFunction", "Functions\EnhancedGamesApp.UpdateListFunction\EnhancedGamesApp.UpdateListFunction.csproj", "{17E214A9-A4BC-47B1-913E-160A1CD521C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,16 +43,16 @@ Global
 		{A0D7DF20-5FDC-43CD-86FF-5B966A6D7A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0D7DF20-5FDC-43CD-86FF-5B966A6D7A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0D7DF20-5FDC-43CD-86FF-5B966A6D7A58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62AC210B-90D5-4603-B47B-41B103AE2755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62AC210B-90D5-4603-B47B-41B103AE2755}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62AC210B-90D5-4603-B47B-41B103AE2755}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62AC210B-90D5-4603-B47B-41B103AE2755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17E214A9-A4BC-47B1-913E-160A1CD521C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17E214A9-A4BC-47B1-913E-160A1CD521C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17E214A9-A4BC-47B1-913E-160A1CD521C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17E214A9-A4BC-47B1-913E-160A1CD521C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{62AC210B-90D5-4603-B47B-41B103AE2755} = {D04C14E7-4A60-452A-80BC-67546E499967}
+		{17E214A9-A4BC-47B1-913E-160A1CD521C1} = {D04C14E7-4A60-452A-80BC-67546E499967}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54B82515-6202-401A-A5FB-FC6FDD328B4E}

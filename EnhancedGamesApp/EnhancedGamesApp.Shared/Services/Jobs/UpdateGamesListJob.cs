@@ -1,12 +1,12 @@
-﻿using EnhancedGamesApp.DAL.Entities;
+﻿using System;
+using System.Linq;
+using EnhancedGamesApp.DAL.Entities;
 using EnhancedGamesApp.DAL.Repositories;
 using EnhancedGamesApp.Shared.Services.Providers;
 using FluentScheduler;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
 
-namespace EnhancedGamesApp.Console.Shared.Jobs
+namespace EnhancedGamesApp.Shared.Services.Jobs
 {
     public class UpdateGamesListJob : IJob
     {

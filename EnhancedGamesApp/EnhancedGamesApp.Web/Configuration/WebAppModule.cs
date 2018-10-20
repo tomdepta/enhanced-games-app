@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using EnhancedGamesApp.DAL.Repositories;
 
-namespace EnhancedGamesApp.Web
+namespace EnhancedGamesApp.Web.Configuration
 {
     internal class WebAppModule : Module
     {
