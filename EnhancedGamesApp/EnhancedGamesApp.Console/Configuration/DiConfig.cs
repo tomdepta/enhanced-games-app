@@ -18,7 +18,8 @@ namespace EnhancedGamesApp.Console.Configuration
         {
             var configuration = InitializeConfigurationFile(builder);
             builder.RegisterType<GameRepository>().As<IGameRepository>();
-            builder.RegisterType<WebGamesListProvider>().As<IGamesListProvider>();
+            builder.RegisterType<WebGamesListProvider>().As<IGamesListProvider>()
+                .WithParameter("gameListUrl", configuration["GameListUrl"]);
             builder.RegisterType<UpdateGamesListJob>().As<IJob>();
             builder.RegisterType<ScheduleRegistry>().As<Registry>();
             

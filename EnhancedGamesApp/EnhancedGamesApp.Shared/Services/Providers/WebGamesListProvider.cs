@@ -1,6 +1,5 @@
 ﻿using EnhancedGamesApp.DAL.Entities;
 using EnhancedGamesApp.Shared.Extensions;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Collections.Generic;
@@ -21,13 +20,11 @@ namespace EnhancedGamesApp.Shared.Services.Providers
         private const string KeySuffix = "urlhttp";
         private const char HtmlOpeningTag = '<';
 
-        private readonly IConfiguration _configuration;
         private readonly string _listJsonUrl;
 
-        public WebGamesListProvider(IConfiguration configuration)
+        public WebGamesListProvider(string gameListUrl)
         {
-            _configuration = configuration;
-            _listJsonUrl = _configuration["GameListUrl"];
+            _listJsonUrl = gameListUrl;
         }
 
         public IEnumerable<Game> GetGamesList()
